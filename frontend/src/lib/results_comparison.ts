@@ -8,12 +8,19 @@ function evaluateUserPicks(
     const resultMatch = actualResults.find(m => m.id === prediction.id)
     if (!resultMatch)
       return null
+
     if (!resultMatch.result) {
-      if (resultMatch.matchStatus === 'Scheduled') {
+      const status = resultMatch.matchStatus
+      const isScheduled = typeof status === 'string'
+        && (
+          status.toLowerCase() === 'scheduled'
+          || /^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}$/.test(status)
+        )
+      if (isScheduled) {
         return {
           ...prediction,
-          matchStatus: 'Scheduled',
-          sides: resultMatch.sides,
+          matchStatus: status,
+          sides: resultMatch.sides || prediction.sides,
           result: null,
         }
       }
