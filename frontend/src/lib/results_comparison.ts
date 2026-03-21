@@ -6,8 +6,19 @@ function evaluateUserPicks(
 ): Data | null {
   const mergedMatches = (userBracket.matches || []).map((prediction: Match) => {
     const resultMatch = actualResults.find(m => m.id === prediction.id)
-    if (!resultMatch || !resultMatch.result)
+    if (!resultMatch)
       return null
+    if (!resultMatch.result) {
+      if (resultMatch.matchStatus === 'Scheduled') {
+        return {
+          ...prediction,
+          matchStatus: 'Scheduled',
+          sides: resultMatch.sides,
+          result: null,
+        }
+      }
+      return null
+    }
     return {
       ...prediction,
       result: resultMatch.result,
