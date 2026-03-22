@@ -141,3 +141,26 @@ export async function deleteTemplate(id: string): Promise<void> {
     method: 'DELETE',
   })
 }
+
+/**
+ * GET /api/templates/:id/results/download - Download results as JSON file
+ * Requires admin role
+ */
+export async function downloadTemplateResults(id: string): Promise<void> {
+  const url = `${API_BASE_URL}/api/templates/${encodeURIComponent(id)}/results/download`
+  const response = await fetch(url, {
+    credentials: 'include',
+  })
+  if (!response.ok) {
+    throw new Error(`API error: ${response.status} ${response.statusText}`)
+  }
+  const blob = await response.blob()
+  const downloadUrl = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = downloadUrl
+  a.download = `results-${id}.json`
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(downloadUrl)
+}
