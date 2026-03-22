@@ -14,6 +14,7 @@ const UpdateResultsSchema = z.object({
 
 /**
  * GET /:id/results - Get tournament results
+ * GET /:id/results/download - Download results as JSON file (admin only)
  * PUT /:id/results - Update tournament results
  */
 export async function resultsRoutes(server: FastifyInstance): Promise<void> {
@@ -36,6 +37,34 @@ export async function resultsRoutes(server: FastifyInstance): Promise<void> {
     }
 
     reply.send({ results: result.matches })
+  })
+
+  /**
+   * GET /:id/results/download
+   * Returns the current tournament results as a downloadable JSON file
+   * Requires admin role
+   */
+  server.get('/:id/results/download', async (request, reply) => {
+    await getAdminOrThrow(request)
+    const { id } = request.params as { id: string }
+    const [template] = await db.select()
+      .from(tournament_templates)
+      .where(eq(tournament_templates.id, id))
+      .limit(1)
+    if (!template) {
+      throw new NotFoundError(`Template not found: ${id}`)
+    }
+    const [result] = await db.select()
+      .from(tournament_results)
+      .where(eq(tournament_results.template_id, id))
+      .limit(1)
+    if (!result) {
+      throw new NotFoundError(`Results not found for template ${id}`)
+    }
+    reply
+      .header('Content-Type', 'application/json')
+      .header('content-disposition', `attachment; filename="results-${id}.json"`)
+      .send({ matches: result.matches })
   })
 
   /**

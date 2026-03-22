@@ -11,7 +11,7 @@ import Message from 'primevue/message'
 import Textarea from 'primevue/textarea'
 import { onMounted, ref } from 'vue'
 import { z } from 'zod'
-import { activateTemplate, createTemplate, deleteTemplate, getTemplates, updateTemplateResults } from '../api'
+import { activateTemplate, createTemplate, deleteTemplate, downloadTemplateResults, getTemplates, updateTemplateResults } from '../api'
 import Templates from '../components/Templates.vue'
 import { showToast } from '../composables/useToast'
 import '../styles/components/Admin.scss'
@@ -178,6 +178,24 @@ function cancelEditResults() {
   templateForResults.value = null
 }
 
+async function downloadResults() {
+  if (!templateForResults.value) {
+    showToast('No template selected', 'error')
+    return
+  }
+  try {
+    await downloadTemplateResults(templateForResults.value.id)
+  }
+  catch (error) {
+    if (error instanceof Error) {
+      showToast(error.message, 'error')
+    }
+    else {
+      showToast('Failed to download results', 'error')
+    }
+  }
+}
+
 onMounted(fetchTemplates)
 </script>
 
@@ -294,6 +312,7 @@ onMounted(fetchTemplates)
         </div>
 
         <div class="form-actions">
+          <Button label="Download" severity="help" type="button" @click="downloadResults" />
           <Button label="Cancel" severity="secondary" type="button" @click="cancelEditResults" />
           <Button label="Save Results" type="submit" />
         </div>
