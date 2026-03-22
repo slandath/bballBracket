@@ -152,7 +152,9 @@ export async function downloadTemplateResults(id: string): Promise<void> {
     credentials: 'include',
   })
   if (!response.ok) {
-    throw new Error(`API error: ${response.status} ${response.statusText}`)
+    const body = await response.json().catch(() => ({}))
+    const message = body.message || response.statusText
+    throw new Error(`API error: ${response.status} ${message}`)
   }
   const blob = await response.blob()
   const downloadUrl = URL.createObjectURL(blob)
