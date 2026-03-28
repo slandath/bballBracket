@@ -32,6 +32,8 @@ export {
   useUpdateBracket,
 } from './useBrackets'
 
+export { useBracketScore } from './useBracketScore'
+
 /**
  * LocalStorage utilities for persisting bracket data.
  * - loadFromStorage: Loads bracket data from localStorage with fallback to default
@@ -39,7 +41,6 @@ export {
  * - STORAGE_KEY: The localStorage key used for bracket data
  */
 export { loadFromStorage, saveToStorage, STORAGE_KEY } from './useBracketStorage'
-
 export { useEvaluateBracket } from './useEvaluateBracket'
 
 /**

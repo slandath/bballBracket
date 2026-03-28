@@ -2,7 +2,7 @@
 import { Button } from 'primevue'
 import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { useCurrentBracketOnLogin, useTypedSession } from '../composables'
+import { useBracketScore, useCurrentBracketOnLogin, useTypedSession } from '../composables'
 import UserMenu from './UserMenu.vue'
 import '../styles/components/Header.scss'
 
@@ -13,6 +13,7 @@ const show_user_icon = computed(() =>
 )
 const { data: currentBracketData } = useCurrentBracketOnLogin()
 const hasBracket = computed(() => !!currentBracketData.value?.bracket)
+const { score } = useBracketScore(currentBracketData)
 const currentYear = computed(() => new Date().getFullYear())
 
 function toggleUserMenu() {
@@ -39,6 +40,7 @@ function closeUserMenu() {
         v-if="sessionData?.user"
         :is-open="menuOpen"
         :has-bracket="hasBracket"
+        :score="score"
         @close="closeUserMenu"
         @update:is-open="menuOpen = $event"
       />
