@@ -10,9 +10,10 @@ import '../styles/components/UserMenu.scss'
 interface Props {
   isOpen: boolean
   hasBracket?: boolean
+  score?: number | null
 }
 
-withDefaults(defineProps<Props>(), { hasBracket: false })
+withDefaults(defineProps<Props>(), { hasBracket: false, score: null })
 
 const emit = defineEmits<{
   'close': []
@@ -50,6 +51,9 @@ async function handleSignOut() {
     <div class="button-container">
       <Button v-if="role === 'admin'" label="Admin" icon="pi pi-cog" size="large" @click="navigateToAdmin" />
       <Button :label="hasBracket ? 'Complete' : 'Make Picks'" :disabled="hasBracket" :icon="hasBracket ? 'pi pi-check' : 'pi pi-pencil'" size="large" @click="openSelectionTool(); emit('close')" />
+    </div>
+    <div v-if="hasBracket && score !== null" class="score-display">
+      <p>Correct Picks: {{ score }} / 63</p>
     </div>
     <template #footer>
       <div class="btn-container">
