@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [vue(), svgLoader()],
   server: {
     allowedHosts: ['.up.railway.app', 'localhost', 'basketball.tomslanda.com'],
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
   },
 })
