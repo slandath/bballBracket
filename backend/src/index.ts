@@ -15,14 +15,10 @@ console.warn(`Connecting to ${process.env.NODE_ENV} database...`)
 
 const pool = new Pool({
   connectionString: database_url,
-  ssl: process.env.NODE_ENV === 'production'
-    ? {
-        rejectUnauthorized: true,
-        ...(process.env.PG_CA_CERT
-          ? { ca: process.env.PG_CA_CERT.replace(/\\n/g, '\n') }
-          : {}),
-      }
-    : false,
+  ssl:
+    process.env.NODE_ENV === 'production'
+      ? { rejectUnauthorized: false }
+      : false,
 })
 
 export const db = drizzle(pool)
