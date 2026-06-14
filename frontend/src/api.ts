@@ -1,6 +1,6 @@
 import type { Bracket, BracketResponse, BracketsResponse, Data, Template, TemplatesResponse } from './lib/data/types'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+const API_BASE_URL = import.meta.env.VITE_API_URL || ''
 
 export async function fetchFromAPI(endpoint: string, options?: RequestInit) {
   const url = `${API_BASE_URL}${endpoint}`
