@@ -97,8 +97,9 @@ export async function buildApp(): Promise<FastifyInstance> {
     })
 
     app.setNotFoundHandler(async (request, reply) => {
-      if (request.url.startsWith('/api/')) {
-        return reply.callNotFound()
+      const isSpaRouteMethod = request.method === 'GET' || request.method === 'HEAD'
+      if (request.url.startsWith('/api/') || !isSpaRouteMethod) {
+        return reply.notFound()
       }
       return reply.sendFile('index.html')
     })
