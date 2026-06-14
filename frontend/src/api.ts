@@ -1,9 +1,7 @@
 import type { Bracket, BracketResponse, BracketsResponse, Data, Template, TemplatesResponse } from './lib/data/types'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || ''
-
 export async function fetchFromAPI(endpoint: string, options?: RequestInit) {
-  const url = `${API_BASE_URL}${endpoint}`
+  const url = `${endpoint}`
   const hasBody = options?.body !== undefined
   const response = await fetch(url, {
     ...options,
@@ -147,7 +145,7 @@ export async function deleteTemplate(id: string): Promise<void> {
  * Requires admin role
  */
 export async function downloadTemplateResults(id: string): Promise<void> {
-  const url = `${API_BASE_URL}/api/templates/${encodeURIComponent(id)}/results/download`
+  const url = `/api/templates/${encodeURIComponent(id)}/results/download`
   const response = await fetch(url, {
     credentials: 'include',
   })
