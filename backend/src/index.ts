@@ -15,25 +15,7 @@ console.warn(`Connecting to ${process.env.NODE_ENV} database...`)
 
 const pool = new Pool({
   connectionString: database_url,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  ssl:
-    process.env.NODE_ENV === 'production'
-      ? { rejectUnauthorized: false }
-      : false,
-=======
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
->>>>>>> 4fae0e7 (added TLS for pg)
-=======
-  ssl: process.env.NODE_ENV === 'production'
-    ? {
-        rejectUnauthorized: true,
-        ...(process.env.PG_CA_CERT
-          ? { ca: process.env.PG_CA_CERT.replace(/\\n/g, '\n') }
-          : {}),
-      }
-    : false,
->>>>>>> 37efd45 (coderabbit fixes)
+  ssl: false,
 })
 
 export const db = drizzle(pool)
