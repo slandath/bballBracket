@@ -1,8 +1,11 @@
 import type { FastifyInstance } from 'fastify'
+import path from 'node:path'
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import cors from '@fastify/cors'
 import rateLimit from '@fastify/rate-limit'
 import fastifySensible from '@fastify/sensible'
+import fastifyStatic from '@fastify/static'
 import Fastify from 'fastify'
 import bracketRoutes from './routes/brackets.js'
 import healthRoutes from './routes/health.js'
@@ -20,6 +23,9 @@ function getAllowedOrigins(): string | string[] {
   const origins = corsOrigin.split(',').map(origin => origin.trim())
   return origins.length === 1 ? origins[0] : origins
 }
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const frontendDistPath = path.join(__dirname, '..', '..', 'frontend', 'dist')
 
 export async function buildApp(): Promise<FastifyInstance> {
   const app = Fastify({
@@ -81,6 +87,23 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(templateRoutes, { prefix: '/api/templates' })
   await app.register(resultsRoutes, { prefix: '/api/templates' })
 
+  const fs = await import('node:fs')
+
+  if (fs.existsSync(frontendDistPath)) {
+    await app.register(fastifyStatic, {
+      root: frontendDistPath,
+      prefix: '/',
+      wildcard: false,
+    })
+
+    app.setNotFoundHandler(async (request, reply) => {
+      if (request.url.startsWith('/api/')) {
+        return reply.callNotFound()
+      }
+      return reply.sendFile('index.html')
+    })
+  }
+
   app.setErrorHandler((error, request, reply) => {
     if (error instanceof UnauthorizedError) {
       return reply.unauthorized(error.message)
@@ -93,10 +116,6 @@ export async function buildApp(): Promise<FastifyInstance> {
     }
     request.log.error(error)
     return reply.internalServerError('Something went wrong')
-  })
-
-  app.get('/', async () => {
-    return { hello: 'world' }
   })
 
   return app
