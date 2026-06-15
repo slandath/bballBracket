@@ -88,36 +88,6 @@ The Vite dev server runs on port `5173` and proxies `/api` requests to the backe
 
 ---
 
-## Production Deployment (Railway)
-
-The app deploys as a single Railway service that builds both packages and runs only the backend.
-
-### Railway Service Configuration
-
-| Setting | Value |
-|---------|-------|
-| Build Command | `pnpm install && pnpm build` |
-| Deploy Command | `cd backend && node dist/server.js` |
-
-### Environment Variables
-
-Set these in Railway dashboard:
-
-| Variable | Example |
-|----------|---------|
-| `PORT` | `3000` |
-| `DATABASE_URL` | Your Railway PostgreSQL connection string |
-| `BETTER_AUTH_SECRET` | *(generate one)* |
-| `BETTER_AUTH_URL` | `https://your-domain.com` |
-| `GITHUB_CLIENT_ID` | From GitHub OAuth App |
-| `GITHUB_CLIENT_SECRET` | From GitHub OAuth App |
-| `AUTH_POST_LOGIN_URL` | `https://your-domain.com/` |
-| `AUTH_ERROR_URL` | `https://your-domain.com/error` |
-
-Note: `CORS_ORIGIN`, `VITE_API_URL`, and `VITE_APP_URL` are not needed in production.
-
----
-
 ## Features
 
 ### User Features
