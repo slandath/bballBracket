@@ -18,7 +18,7 @@
     "@primeuix/themes": "^2.0.3",
     "@primevue/forms": "^4.5.4",
     "@tanstack/vue-query": "^5.92.9",
-    "better-auth": "^1.6.11",
+    "better-auth": "^1.6.13",
     "primeicons": "^7.0.0",
     "primevue": "^4.5.4",
     "vue-router": "4",
