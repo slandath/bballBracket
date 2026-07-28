@@ -9,7 +9,7 @@ overrides:
   esbuild: '>=0.28.1'
   fast-uri: '>=3.1.2'
   flatted: '>=3.4.2'
-  immutable: '>=5.1.5'
+  immutable: '>=5.1.8'
   lodash: '>=4.18.0'
   minimatch: '>=3.1.3'
   picomatch: '>=4.0.4'
@@ -130,8 +130,8 @@ importers:
         specifier: ^16.5.0
         version: 16.5.0
       immutable:
-        specifier: '>=5.1.5'
-        version: 5.1.5
+        specifier: '>=5.1.8'
+        version: 5.1.8
       jsdom:
         specifier: ^27.0.0
         version: 27.4.0
@@ -2009,7 +2009,7 @@ packages:
       '@typescript-eslint/types': 8.65.0
       '@typescript-eslint/visitor-keys': 8.65.0
       debug: 4.4.3
-      minimatch: 10.2.6
+      minimatch: 10.2.5
       semver: 7.8.5
       tinyglobby: 0.2.17
       ts-api-utils: 2.5.0(typescript@5.9.3)
@@ -2156,7 +2156,7 @@ packages:
       '@vue/shared': 3.5.40
       estree-walker: 2.0.2
       magic-string: 0.30.21
-      postcss: 8.5.23
+      postcss: 8.5.22
       source-map-js: 1.2.1
     dev: true
 
@@ -3905,8 +3905,8 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
-  /immutable@5.1.5:
-    resolution: {integrity: sha512-t7xcm2siw+hlUM68I+UEOK+z84RzmN59as9DZ7P1l0994DKUWV7UXBMQZVxaoMSRQ+PBZbHCOoBt7a2wxOMt+A==}
+  /immutable@5.1.8:
+    resolution: {integrity: sha512-TM5YqrGeTsVIPPpILzeqZ8D2Zc2TvNgSDi88zPF2a4cyqQdWV/wVWBDRDbNzzrLeRWScrFcOX9lW2iX6GOtUDw==}
     dev: true
 
   /import-fresh@3.3.1:
@@ -4783,8 +4783,8 @@ packages:
     hasBin: true
     dev: true
 
-  /nanostores@1.4.1:
-    resolution: {integrity: sha512-PGd3uPojJB9Z07d5NX3Db/SOSBbyy3wLMUGq0GpnEEJfVzY9mq7daPMAZ3jObV5D3Jn+YKND636eI5ULg7F80Q==}
+  /nanostores@1.3.0:
+    resolution: {integrity: sha512-XPUa/jz+P1oJvN9VBxw4L9MtdFfaH3DAryqPssqhb2kXjmb9npz0dly6rCsgFWOPr4Yg9mTfM3MDZgZZ+7A3lA==}
     engines: {node: ^20.0.0 || >=22.0.0}
     dev: false
 
@@ -5093,8 +5093,8 @@ packages:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  /postcss@8.5.23:
-    resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
+  /postcss@8.5.22:
+    resolution: {integrity: sha512-KBDEIpLrvpv16pp3K0Fw+UCoZfopFjjgeB+0tA/aaThfEE74kKDLrgg603YvOWJyg3+WYtyq3xYsQWsIyZlPqQ==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.16
@@ -5310,7 +5310,7 @@ packages:
     hasBin: true
     dependencies:
       chokidar: 4.0.3
-      immutable: 5.1.5
+      immutable: 5.1.8
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.6.0
