@@ -12,7 +12,6 @@
       ]
     }
   },
-
   "forwardPorts": [5173, 3000],
-  "postCreateCommand": "npm install -g pnpm@8.15.9 && pnpm install && pnpm build"
+  "postCreateCommand": "npm install -g pnpm@8.15.9 && npm install -g @opencode/cli && pnpm install && pnpm build"
 }

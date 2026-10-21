@@ -1,8 +1,8 @@
-# AGENTS.md - Bracketry Codebase Guide
+# AGENTS.md - bballbracket Codebase Guide
 
 ## Project Overview
 
-Bracketry is a pnpm monorepo with Vue 3 frontend (Vite) and Fastify backend.
+bballbracket is a pnpm monorepo with Vue 3 frontend (Vite) and Fastify backend.
 
 ## Build, Lint, and Type Check Commands
 
@@ -17,35 +17,35 @@ pnpm type-check   # Type check all workspaces
 pnpm check        # Run lint + type-check
 ```
 
-### Frontend (@bracketry/frontend)
+### Frontend (@bballbracket/frontend)
 
 ```bash
-pnpm --filter @bracketry/frontend dev        # Dev server (Vite, port 5173)
-pnpm --filter @bracketry/frontend build       # Production build
-pnpm --filter @bracketry/frontend preview    # Preview production build
-pnpm --filter @bracketry/frontend lint        # Lint
-pnpm --filter @bracketry/frontend lint:fix    # Fix lint issues
-pnpm --filter @bracketry/frontend type-check # TypeScript check
+pnpm --filter @bballbracket/frontend dev        # Dev server (Vite, port 5173)
+pnpm --filter @bballbracket/frontend build       # Production build
+pnpm --filter @bballbracket/frontend preview    # Preview production build
+pnpm --filter @bballbracket/frontend lint        # Lint
+pnpm --filter @bballbracket/frontend lint:fix    # Fix lint issues
+pnpm --filter @bballbracket/frontend type-check # TypeScript check
 ```
 
-### Backend (@bracketry/backend)
+### Backend (@bballbracket/backend)
 
 ```bash
-pnpm --filter @bracketry/backend dev          # Dev server (tsx watch, port 3000)
-pnpm --filter @bracketry/backend build        # Compile TypeScript
-pnpm --filter @bracketry/backend start        # Start production server
-pnpm --filter @bracketry/backend lint         # Lint
-pnpm --filter @bracketry/backend lint:fix      # Fix lint issues
-pnpm --filter @bracketry/backend type-check   # TypeScript check
+pnpm --filter @bballbracket/backend dev          # Dev server (tsx watch, port 3000)
+pnpm --filter @bballbracket/backend build        # Compile TypeScript
+pnpm --filter @bballbracket/backend start        # Start production server
+pnpm --filter @bballbracket/backend lint         # Lint
+pnpm --filter @bballbracket/backend lint:fix      # Fix lint issues
+pnpm --filter @bballbracket/backend type-check   # TypeScript check
 ```
 
 ### Database (Backend)
 
 ```bash
-pnpm --filter @bracketry/backend db:generate  # Generate Drizzle migrations
-pnpm --filter @bracketry/backend db:migrate   # Run migrations
-pnpm --filter @bracketry/backend db:push       # Push schema to DB
-pnpm --filter @bracketry/backend db:studio     # Open Drizzle Studio
+pnpm --filter @bballbracket/backend db:generate  # Generate Drizzle migrations
+pnpm --filter @bballbracket/backend db:migrate   # Run migrations
+pnpm --filter @bballbracket/backend db:push       # Push schema to DB
+pnpm --filter @bballbracket/backend db:studio     # Open Drizzle Studio
 ```
 
 ### Running Single Tests
