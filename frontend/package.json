@@ -22,7 +22,7 @@
     "primeicons": "^7.0.0",
     "primevue": "^4.5.4",
     "vue-router": "4",
-    "zod": "^4.3.6"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.7.3",
